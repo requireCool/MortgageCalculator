@@ -1,8 +1,12 @@
+import os
 from prettytable import PrettyTable
 
 
-ACCUMULATION_FUND_LOAN_INTEREST_RATE_PER_MONTH = 0.031 / 12
-COMMERCIAL_FUND_LOAN_INTEREST_RATE_PER_MONTH = 0.0395 / 12
+af_loan_interest_rate = float(os.environ.get('AF_LOAN_INTEREST_RATE', default=0.031))
+cf_loan_interest_rate = float(os.environ.get('CF_LOAN_INTEREST_RATE', default=0.0395))
+
+ACCUMULATION_FUND_LOAN_INTEREST_RATE_PER_MONTH = af_loan_interest_rate / 12
+COMMERCIAL_FUND_LOAN_INTEREST_RATE_PER_MONTH = cf_loan_interest_rate / 12
 
 
 def calculate(af_loan_amount, cf_loan_amount, loan_month, repay_method, current_af_balance, af_income_per_month):
