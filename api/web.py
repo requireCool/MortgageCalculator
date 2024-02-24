@@ -22,10 +22,10 @@ def home_page():
 
 
 def click_calc():
-    remove("total_interest")
+    remove("total_repaid")
     remove("result")
-    table, total_interest = calculate(pin.af_loan * 10000, pin.cf_loan * 10000, pin.loan_month, pin.repaid_method, pin.af_balance * 10000, pin.af_income_per_month * 1000)
-    put_scope("total_interest", content=[put_text(f"总利息：{round(total_interest / 10000, 2)}万")])
+    table, total_repaid = calculate(pin.af_loan * 10000, pin.cf_loan * 10000, pin.loan_month, pin.repaid_method, pin.af_balance * 10000, pin.af_income_per_month * 1000)
+    put_scope("total_repaid", content=[put_text(f"总现金还款额：{round(total_repaid / 10000, 2)}万")])
     put_scope("result", content=[put_textarea(name="result", value=str(table), rows=20)])
 
 

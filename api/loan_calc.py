@@ -28,8 +28,8 @@ def calculate(af_loan_amount, cf_loan_amount, loan_month, repay_method, current_
         table.add_column("月还款额", monthly_repaid)
     else:
         return "Error repay method", -1
-    total_interest = sum(monthly_repaid)
-    return table, total_interest
+
+    return table, sum(monthly_repaid)
 
 
 def linear(loan_amount, rate, month):
