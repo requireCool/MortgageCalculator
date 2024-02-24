@@ -7,7 +7,7 @@ from pywebio.session import set_env
 from loan_calc import calculate
 
 
-def index():
+def home_page():
     set_env(title="贷款计算器")
     put_markdown('### 贷款计算器')
     put_grid([
@@ -30,4 +30,4 @@ def click_calc():
 
 
 if __name__ == '__main__':
-    start_server(index, 80)
+    start_server(home_page, 80)
