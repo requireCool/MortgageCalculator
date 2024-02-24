@@ -4,7 +4,7 @@ from pywebio.output import *
 from pywebio.pin import *
 from pywebio.session import set_env
 
-from loan_calc import calculate
+from api.loan_calc import calculate
 
 
 def home_page():
