@@ -15,17 +15,21 @@ def calculate(af_loan_amount, cf_loan_amount, loan_month, repay_method, current_
     if repay_method == 1:
         af_linear = linear(af_loan_amount, ACCUMULATION_FUND_LOAN_INTEREST_RATE_PER_MONTH, loan_month)
         cf_linear = linear(cf_loan_amount, COMMERCIAL_FUND_LOAN_INTEREST_RATE_PER_MONTH, loan_month)
+        monthly_repaid = repaid_per_month(af_linear, cf_linear, loan_month, current_af_balance, af_income_per_month)
         table.add_column("商业贷款", cf_linear)
         table.add_column("公积金贷款", af_linear)
-        table.add_column("月还款额", repaid_per_month(af_linear, cf_linear, loan_month, current_af_balance, af_income_per_month))
+        table.add_column("月还款额", monthly_repaid)
     elif repay_method == 2:
         af_annuity = annuity(af_loan_amount, ACCUMULATION_FUND_LOAN_INTEREST_RATE_PER_MONTH, loan_month)
         cf_annuity = annuity(cf_loan_amount, COMMERCIAL_FUND_LOAN_INTEREST_RATE_PER_MONTH, loan_month)
+        monthly_repaid = repaid_per_month(af_annuity, cf_annuity, loan_month, current_af_balance, af_income_per_month)
         table.add_column("商业贷款", cf_annuity)
         table.add_column("公积金贷款", af_annuity)
-        table.add_column("月还款额", repaid_per_month(af_annuity, cf_annuity, loan_month, current_af_balance, af_income_per_month))
-
-    return table
+        table.add_column("月还款额", monthly_repaid)
+    else:
+        return "Error repay method", -1
+    total_interest = sum(monthly_repaid)
+    return table, total_interest
 
 
 def linear(loan_amount, rate, month):
