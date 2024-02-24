@@ -69,4 +69,5 @@ if __name__ == '__main__':
     loan_month = int(input("还款月数："))
     current_af_balance = float(input("公积金余额（万）：")) * 10000
     af_income_per_month = float(input("公积金月收入（千）：")) * 1000
-    calculate(af_loan_amount, cf_loan_amount, loan_month, repay_method, current_af_balance, af_income_per_month)
+    calc = calculate(af_loan_amount, cf_loan_amount, loan_month, repay_method, current_af_balance, af_income_per_month)
+    print(calc)
